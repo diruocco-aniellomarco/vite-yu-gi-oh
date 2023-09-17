@@ -33,3 +33,7 @@ Consigli per la M2:
 - Chiamare l'url appena costruito e aggiornare i risultati
 
 ---
+
+**Bonus:**
+
+Creare un componente che mostri il numero totale di risultati ottenuti.
