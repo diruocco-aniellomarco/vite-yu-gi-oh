@@ -36,7 +36,9 @@ export default {
   <section class="cards-container">
     <AppSearch @start-search="fetchSearch" />
     <div class="container">
-      <!-- <div class="found-cards col-12">Found 20 cards</div> -->
+      <div v-if="cards.length > 0" class="found-cards col-12">
+        Sono state trovate {{ cards.length }}
+      </div>
       <div class="row">
         <AppCard v-if="view" />
         <AppCardSearch v-else :cards="cards" />
@@ -55,5 +57,12 @@ export default {
   background-color: white;
   padding-top: 25px;
   padding-bottom: 25px;
+}
+
+.found-cards {
+  width: 100%;
+  color: white;
+  padding: 20px;
+  background-color: #212529;
 }
 </style>

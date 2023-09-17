@@ -42,13 +42,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-// .found-cards {
-//   width: 100%;
-//   color: white;
-//   padding: 20px;
-//   background-color: #212529;
-// }
-
 .card-container {
   width: calc(100% / 5);
 }
