@@ -1,15 +1,47 @@
 <script>
+import axios from "axios";
 import AppCard from "./AppCard.vue";
+import AppCardSearch from "./AppCardSearch.vue";
 import AppSearch from "./AppSearch.vue";
 export default {
-  components: { AppCard, AppSearch },
+  data() {
+    return {
+      selected: "",
+      cards: [],
+      view: true,
+    };
+  },
+  components: { AppCard, AppSearch, AppCardSearch },
+
+  methods: {
+    fetchSearch(selected) {
+      this.view = false;
+
+      axios
+        .get(
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=" + selected
+        )
+        .then((response) => {
+          this.cards = response.data.data;
+          console.log(response.data.data);
+
+          return this.cards;
+        });
+    },
+  },
 };
 </script>
 
 <template>
   <section class="cards-container">
-    <AppSearch />
-    <AppCard />
+    <AppSearch @start-search="fetchSearch" />
+    <div class="container">
+      <!-- <div class="found-cards col-12">Found 20 cards</div> -->
+      <div class="row">
+        <AppCard v-if="view" />
+        <AppCardSearch v-else :cards="cards" />
+      </div>
+    </div>
   </section>
 </template>
 
@@ -17,5 +49,11 @@ export default {
 .cards-container {
   padding: 20px;
   background-color: orange;
+}
+
+.container {
+  background-color: white;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 </style>

@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       archetypes: [],
+      selected: "Open this select menu",
     };
   },
   methods: {
@@ -11,7 +12,7 @@ export default {
       axios
         .get("https://db.ygoprodeck.com/api/v7/archetypes.php")
         .then((response) => {
-          console.log(response.data);
+          //   console.log(response.data);
           this.archetypes = response.data;
         });
     },
@@ -26,10 +27,18 @@ export default {
 <template>
   <section class="cards-container">
     <div class="container mb-2">
-      <select class="form-select" aria-label="Default select example">
+      <select
+        @change.prevent="$emit('start-search', selected)"
+        v-model="selected"
+        class="form-select"
+        aria-label="Default select example"
+      >
         <option selected>Open this select menu</option>
 
-        <option v-for="archetipo in archetypes" value="1">
+        <option
+          v-for="archetipo in archetypes"
+          :value="archetipo.archetype_name"
+        >
           {{ archetipo.archetype_name }}
         </option>
         <!-- <option value="2">Two</option>

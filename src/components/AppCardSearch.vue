@@ -1,27 +1,10 @@
 <script>
-import axios from "axios";
 export default {
   data() {
-    return {
-      cards: [],
-    };
+    return {};
   },
 
-  // props: { cards: Array },
-  methods: {
-    fetchCards() {
-      axios
-        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
-        .then((response) => {
-          this.cards = response.data.data;
-          // console.log(response.data.data);
-        });
-    },
-  },
-
-  created() {
-    this.fetchCards();
-  },
+  props: { cards: Array },
 };
 </script>
 
@@ -42,13 +25,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-// .found-cards {
-//   width: 100%;
-//   color: white;
-//   padding: 20px;
-//   background-color: #212529;
-// }
-
 .card-container {
   width: calc(100% / 5);
 }
