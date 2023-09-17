@@ -12,7 +12,6 @@ export default {
       axios
         .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0")
         .then((response) => {
-          console.log(response.data.data);
           this.cards = response.data.data;
         });
     },
@@ -26,7 +25,7 @@ export default {
 
 <template>
   <div class="container">
-    <div class="found-cards col-12">Found 20 cards</div>
+    <!-- <div class="found-cards col-12">Found 20 cards</div> -->
     <div class="row">
       <div v-for="(card, index) in cards" class="card-container">
         <div class="d-flex flex-column text-center mb-2">
